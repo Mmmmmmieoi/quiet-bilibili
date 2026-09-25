@@ -5,7 +5,8 @@
 // @description  自动精简 B 站首页，隐藏视频推荐；保留搜索、动态、收藏及课程选集。
 // @homepageURL  https://github.com/Mmmmmmieoi/quiet-bilibili
 // @supportURL   https://github.com/Mmmmmmieoi/quiet-bilibili/issues
-// @license    /^\/\d+\/favlist\/?$/      https://www.bilibili.com/*
+// @license      MIT
+// @match        https://www.bilibili.com/*
 // @match        https://bilibili.com/*
 // @run-at       document-start
 // @inject-into  content
@@ -123,7 +124,7 @@ const config = Object.freeze({
     if (!link) return;
     try {
       const u = new URL(link.getAttribute('href'), location.href);
-      if (u.hostname !== 'space.bilibili.com' || !/^/d+/favlist/?$/.test(u.pathname)) return;
+      if (u.hostname !== 'space.bilibili.com' || !/^\/\d+\/favlist\/?$/.test(u.pathname)) return;
       const href = `https://space.bilibili.com${u.pathname}`;
       if (favorite.href !== href) {
         favorite.href = href;
